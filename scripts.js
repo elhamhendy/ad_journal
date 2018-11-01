@@ -42,7 +42,7 @@ let quizQuestions = [
 {questionText: question_seventeen, answer: false},
 {questionText: question_eighteen, answer: false},
 {questionText: question_ninteen, answer: false},
-{questionText: question_twenty, answer: false},
+{questionText: question_twenty, answer: false}
 //last question
 ];
 
