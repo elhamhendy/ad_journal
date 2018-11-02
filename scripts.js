@@ -25,7 +25,24 @@ let question_twenty  = "Do you market to former customers to bring them back ?";
 let quizQuestions = [
 {questionText: question_one, answer: false},
 {questionText: question_two, answer: false},
-{questionText: question_three, answer: false}
+{questionText: question_three, answer: false},
+{questionText: question_four, answer: false},
+{questionText: question_five, answer: false},
+{questionText: question_six, answer: false},
+{questionText: question_seven, answer: false},
+{questionText: question_eight, answer: false},
+{questionText: question_nine, answer: false},
+{questionText: question_ten, answer: false},
+{questionText: question_eleven, answer: false},
+{questionText: question_twelve, answer: false},
+{questionText: question_thirteen, answer: false},
+{questionText: question_fourteen, answer: false},
+{questionText: question_fifteen, answer: false},
+{questionText: question_sixteen, answer: false},
+{questionText: question_seventeen, answer: false},
+{questionText: question_eighteen, answer: false},
+{questionText: question_ninteen, answer: false},
+{questionText: question_twenty, answer: false}
 //last question
 ];
 
