@@ -19,9 +19,6 @@ let question_eighteen = "Do you have your business listed in the Top 15 local Di
 let question_ninteen = "Have you tested Google and/or Facebook ads to attract customers?";
 let question_twenty  = "Do you market to former customers to bring them back?";
 
-//Next Task for Elham: Turn all the questions into an Object in the quiz array.
-//Next Task for Wand-Yam: Write a calculateScore() function for the Get My Score button that scores how many YES and How many NO as a temporary score
-
 let quizQuestions = [
 {questionText: question_one, answer: false},
 {questionText: question_two, answer: false },
@@ -86,6 +83,4 @@ function calculateScore() {
  			console.log("create an array of TASK");
  		}
  	}
- 	//return yesScore;
-	//let yesScore = document.getElementsByTagName("input[='quizQuestion0']").value;
 } 
