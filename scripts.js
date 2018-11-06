@@ -51,18 +51,19 @@ function startQuiz() {
 	`<div class="progress">
   	<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
 	 </div>`;
-	 document.getElementById("content").innerHTML += `YES &nbsp; NO`
+	 document.getElementById("content").innerHTML += `<br><strong>YES &nbsp;&nbsp;&nbsp; NO</strong>`
 	 document.getElementById("content").innerHTML +=
 	 `
-	 <form name="quizForm" id="quizForm">
+	 <form name="quizForm" id="quizForm" class="form-check text-left text-nowrap">
 	 </form>
 	 `
 	for (let quizIndex = 0; quizIndex < quizQuestions.length; quizIndex++) {
 		document.getElementById("quizForm").innerHTML +=
-		`<br>
+		`
+		<br>
 		&nbsp;
-		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" required> &nbsp; &nbsp; &nbsp; 
-		<input type="radio" name="quizQuestion${quizIndex}" value="0" aria-label="Checkbox for NO" required>
+		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" class="form-check-input" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="quizQuestion${quizIndex}" value="0" aria-label="Checkbox for NO" class="form-check-input" required>
 		&nbsp;&nbsp;&nbsp;`
 
 		document.getElementById("quizForm").innerHTML += `${quizQuestions[quizIndex].questionText}<br>`;
