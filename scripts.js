@@ -62,7 +62,7 @@ function startQuiz() {
 		`
 		<br>
 		&nbsp;
-		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" class="form-check-input" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" class="form-check-input" required>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 		<input type="radio" name="quizQuestion${quizIndex}" value="0" aria-label="Checkbox for NO" class="form-check-input" required>
 		&nbsp;&nbsp;&nbsp;`
 
