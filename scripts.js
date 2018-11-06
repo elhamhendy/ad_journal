@@ -20,28 +20,26 @@ let question_ninteen = "Have you tested Google and/or Facebook ads to attract cu
 let question_twenty  = "Do you market to former customers to bring them back?";
 
 let quizQuestions = [
-{questionText: question_one, answer: false},
-{questionText: question_two, answer: false },
-{questionText: question_three, answer: false },
-{questionText: question_two, answer: false},
-{questionText: question_three, answer: false},
-{questionText: question_four, answer: false},
-{questionText: question_five, answer: false},
-{questionText: question_six, answer: false},
-{questionText: question_seven, answer: false},
-{questionText: question_eight, answer: false},
-{questionText: question_nine, answer: false},
-{questionText: question_ten, answer: false},
-{questionText: question_eleven, answer: false},
-{questionText: question_twelve, answer: false},
-{questionText: question_thirteen, answer: false},
-{questionText: question_fourteen, answer: false},
-{questionText: question_fifteen, answer: false},
-{questionText: question_sixteen, answer: false},
-{questionText: question_seventeen, answer: false},
-{questionText: question_eighteen, answer: false},
-{questionText: question_ninteen, answer: false},
-{questionText: question_twenty, answer: false} //last question
+{questionText: question_one, answer: false, task: "Create USP for your website"},
+{questionText: question_two, answer: false, task: "Create an opt-in form to capture email addresses" },
+{questionText: question_three, answer: false, task: "Create a valuable freebie and give it way" },
+{questionText: question_four, answer: false, task: " "},
+{questionText: question_five, answer: false, task: " "},
+{questionText: question_six, answer: false, task: " "},
+{questionText: question_seven, answer: false, task: " "},
+{questionText: question_eight, answer: false, task: " "},
+{questionText: question_nine, answer: false, task: " "},
+{questionText: question_ten, answer: false, task: " "},
+{questionText: question_eleven, answer: false, task: " "},
+{questionText: question_twelve, answer: false, task: " "},
+{questionText: question_thirteen, answer: false, task: " "},
+{questionText: question_fourteen, answer: false, task: " "},
+{questionText: question_fifteen, answer: false, task: " "},
+{questionText: question_sixteen, answer: false, task: " "},
+{questionText: question_seventeen, answer: false, task: " "},
+{questionText: question_eighteen, answer: false, task: " "},
+{questionText: question_ninteen, answer: false, task: " "},
+{questionText: question_twenty, answer: false, task: " "} //last question
 ];
 
 function startQuiz() {
@@ -79,9 +77,25 @@ function calculateScore() {
 		let quizValue = quizForm['quizQuestion'+quizIndex].value;
  		if(quizValue === "1"){
  			yesScore++;
- 			console.log(yesScore);
+ 			let question_obj = quizQuestions[quizIndex];
+ 			question_obj.answer = true;
  		} else {
- 			console.log("create an array of TASK");
+ 			let question_obj = quizQuestions[quizIndex]
+ 			let task_array = [];
+ 			task_array.push(question_obj.task);
+ 			addTaskToNotePad(task_array);
  		}
  	}
 } 
+
+function addTaskToNotePad(task_array) {
+	for (taskIndex = 0; taskIndex < task_array.length; taskIndex++) {
+		console.log(task_array[taskIndex]);
+		//display task on notepad
+	}
+}
+
+//add link to edit task
+//add link (or button) to delete task
+//pro: add link (or button) to mark task as done
+//add a form that allow you to create new task
