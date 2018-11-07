@@ -84,25 +84,64 @@ function calculateScore() {
  			all_tasks.push(quizQuestions[quizIndex].task);
  		}
  	}
- 	addTaskToNotePad(all_tasks);
+ 	displayScoreAndTasks(yesScore, all_tasks);
 } 
 
-function addTaskToNotePad(all_tasks) {
+function displayScoreAndTasks(yesScore, all_tasks) {
 	document.getElementById("content").innerHTML = "";
+	
+	if (yesScore > 17) {
+	//display message in Green
+	document.getElementById("content").innerHTML += 
+	`
+	<br>
+	<div class="alert alert-success" role="alert">
+	  A simple success alert—check it out!
+	</div>
+	`
+	} else if (yesScore > 10){
+	//display message in Yellow
 	document.getElementById("content").innerHTML +=
 	`
 	<br>
-	<br>
-	<div class="input-group mb-3">
-  		<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  	<div class="input-group-append">
-    	<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-  	</div>
+	<div class="alert alert-warning" role="alert">
+	  A simple warning alert—check it out!
 	</div>
 	`
+	} else {
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<div class="alert alert-danger" role="alert">
+	  A simple danger alert—check it out!
+	</div>
+	`
+	}
+	
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<div class="input-group mb-3">
+  		<input type="text" class="form-control" placeholder="Enter new Ad Journal task" aria-label="Ad Journal task" aria-describedby="addTask">
+  	<div class="input-group-append">
+    	<button class="btn btn-outline-secondary" type="button" id="addTask">Add New Task</button>
+  	</div>
+	</div>
+	<hr>
+	`
 	for (let taskIndex = 0; taskIndex < all_tasks.length; taskIndex++) {
-		document.getElementById("content").innerHTML += `${all_tasks[taskIndex]}<br>`;
-		console.log(all_tasks[taskIndex]);
+		document.getElementById("content").innerHTML += 
+		`${all_tasks[taskIndex]}
+		<span class="dropdown float-right">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    options
+		  </a>
+		 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
+		</span><br><br>`;
 	}
 }
 
