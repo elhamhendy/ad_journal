@@ -73,25 +73,36 @@ function startQuiz() {
 
 function calculateScore() {
 	let yesScore = 0;
+	let all_tasks = [];
 	for (let quizIndex = 0; quizIndex < quizQuestions.length; quizIndex++) {
 		let quizValue = quizForm['quizQuestion'+quizIndex].value;
+ 		//console.log(quizQuestions[quizIndex],quizQuestions[quizIndex].answer)
  		if(quizValue === "1"){
  			yesScore++;
- 			let question_obj = quizQuestions[quizIndex];
- 			question_obj.answer = true;
+ 			quizQuestions[quizIndex].answer = true;
  		} else {
- 			let question_obj = quizQuestions[quizIndex]
- 			let task_array = [];
- 			task_array.push(question_obj.task);
- 			addTaskToNotePad(task_array);
+ 			all_tasks.push(quizQuestions[quizIndex].task);
  		}
  	}
+ 	addTaskToNotePad(all_tasks);
 } 
 
-function addTaskToNotePad(task_array) {
-	for (taskIndex = 0; taskIndex < task_array.length; taskIndex++) {
-		console.log(task_array[taskIndex]);
-		//display task on notepad
+function addTaskToNotePad(all_tasks) {
+	document.getElementById("content").innerHTML = "";
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<br>
+	<div class="input-group mb-3">
+  		<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+  	<div class="input-group-append">
+    	<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+  	</div>
+	</div>
+	`
+	for (let taskIndex = 0; taskIndex < all_tasks.length; taskIndex++) {
+		document.getElementById("content").innerHTML += `${all_tasks[taskIndex]}<br>`;
+		console.log(all_tasks[taskIndex]);
 	}
 }
 
