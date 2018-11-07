@@ -67,7 +67,7 @@ function startQuiz() {
 		document.getElementById("quizForm").innerHTML += `${quizQuestions[quizIndex].questionText}<br>`;
 
 	}
-		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Score</button>`;
+		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Profitability Score</button>`;
 		console.log("You've completed 50% of the quiz");
 }
 
