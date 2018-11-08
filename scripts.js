@@ -134,13 +134,15 @@ function displayScoreAndTasks(yesScore, all_tasks) {
 		<hr/>
 		${all_tasks[taskIndex]}
 		<span class="dropdown float-right" style="margin-top: -16px;">
-		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="optionsMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    options
 		  </a>
-		 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-		    <a class="dropdown-item" href="#">Action</a>
-		    <a class="dropdown-item" href="#">Another action</a>
-		    <a class="dropdown-item" href="#">Something else here</a>
+		 <div class="dropdown-menu" aria-labelledby="optionsMenuLink">
+		    <a class="dropdown-item" href="#">DONE</a>
+		    <div class="dropdown-divider"></div>
+		    <a class="dropdown-item" href="#">EDIT</a>
+		    <div class="dropdown-divider"></div>
+		    <a class="dropdown-item" href="#">DELETE</a>
 		  </div>
 		</span>`;
 	}
