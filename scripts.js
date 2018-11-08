@@ -27,7 +27,7 @@ let quizQuestions = [
 {questionText: question_five, answer: false, task: "Create separate landing page for each product and service"},
 {questionText: question_six, answer: false, task: "Send an automated follow-up emails to build relationships"},
 {questionText: question_seven, answer: false, task: "Create a YouTube channel"},
-{questionText: question_eight, answer: false, task: "Create short, but valuable 'Education Based' videos to help your target market make a good buyingd decision"},
+{questionText: question_eight, answer: false, task: "Create short, but valuable 'Education Based' videos to help your target market make a good buying decision"},
 {questionText: question_nine, answer: false, task: "Publish a print or eBook to build credibility and authority in your marketplace"},
 {questionText: question_ten, answer: false, task: "Send broadcast emails, text messages, tweets and Facebook posts about special deals and events"},
 {questionText: question_eleven, answer: false, task: "Run limited time special promotions for customers only"},
@@ -127,12 +127,13 @@ function displayScoreAndTasks(yesScore, all_tasks) {
     	<button class="btn btn-outline-secondary" type="button" id="addTask">Add New Task</button>
   	</div>
 	</div>
-	<hr>
 	`
 	for (let taskIndex = 0; taskIndex < all_tasks.length; taskIndex++) {
 		document.getElementById("content").innerHTML += 
-		`${all_tasks[taskIndex]}
-		<span class="dropdown float-right">
+		`
+		<hr/>
+		${all_tasks[taskIndex]}
+		<span class="dropdown float-right" style="margin-top: -16px;">
 		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    options
 		  </a>
@@ -141,7 +142,7 @@ function displayScoreAndTasks(yesScore, all_tasks) {
 		    <a class="dropdown-item" href="#">Another action</a>
 		    <a class="dropdown-item" href="#">Something else here</a>
 		  </div>
-		</span><br><br>`;
+		</span>`;
 	}
 }
 
