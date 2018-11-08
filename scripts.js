@@ -23,23 +23,23 @@ let quizQuestions = [
 {questionText: question_one, answer: false, task: "Create USP for your website"},
 {questionText: question_two, answer: false, task: "Create an opt-in form to capture email addresses" },
 {questionText: question_three, answer: false, task: "Create a valuable freebie and give it way" },
-{questionText: question_four, answer: false, task: " "},
-{questionText: question_five, answer: false, task: " "},
-{questionText: question_six, answer: false, task: " "},
-{questionText: question_seven, answer: false, task: " "},
-{questionText: question_eight, answer: false, task: " "},
-{questionText: question_nine, answer: false, task: " "},
-{questionText: question_ten, answer: false, task: " "},
-{questionText: question_eleven, answer: false, task: " "},
-{questionText: question_twelve, answer: false, task: " "},
-{questionText: question_thirteen, answer: false, task: " "},
-{questionText: question_fourteen, answer: false, task: " "},
-{questionText: question_fifteen, answer: false, task: " "},
-{questionText: question_sixteen, answer: false, task: " "},
-{questionText: question_seventeen, answer: false, task: " "},
-{questionText: question_eighteen, answer: false, task: " "},
-{questionText: question_ninteen, answer: false, task: " "},
-{questionText: question_twenty, answer: false, task: " "} //last question
+{questionText: question_four, answer: false, task: "Create an explainer video on your home page"},
+{questionText: question_five, answer: false, task: "Create separate landing page for each product and service"},
+{questionText: question_six, answer: false, task: "Send an automated follow-up emails to build relationships"},
+{questionText: question_seven, answer: false, task: "Create a YouTube channel"},
+{questionText: question_eight, answer: false, task: "Create short, but valuable 'Education Based' videos to help your target market make a good buying decision"},
+{questionText: question_nine, answer: false, task: "Publish a print or eBook to build credibility and authority in your marketplace"},
+{questionText: question_ten, answer: false, task: "Send broadcast emails, text messages, tweets and Facebook posts about special deals and events"},
+{questionText: question_eleven, answer: false, task: "Run limited time special promotions for customers only"},
+{questionText: question_twelve, answer: false, task: "Survey customers to find out what they want most"},
+{questionText: question_thirteen, answer: false, task: "Offer upsells and cross-sells after a customer has made an initial purchase"},
+{questionText: question_fourteen, answer: false, task: "Issue press releases on a regular bases to introduce new products, services and other newsworthy topics"},
+{questionText: question_fifteen, answer: false, task: "Make your website mobile-friendly and optimized"},
+{questionText: question_sixteen, answer: false, task: "Encourage good customers to leave online reviews on Google and Yelp"},
+{questionText: question_seventeen, answer: false, task: "Partner with other local, non-competing businesses to cross-promote each otehr"},
+{questionText: question_eighteen, answer: false, task: "List your business in the Top 15 local directories and claim your Google Local listing"},
+{questionText: question_ninteen, answer: false, task: "Test Google and/or Facebook Ads for attracting customers"},
+{questionText: question_twenty, answer: false, task: "Market to former customers to bring them back"} //last question
 ];
 
 function startQuiz() {
@@ -67,31 +67,82 @@ function startQuiz() {
 		document.getElementById("quizForm").innerHTML += `${quizQuestions[quizIndex].questionText}<br>`;
 
 	}
-		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Score</button>`;
+		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Profitability Score</button>`;
 		console.log("You've completed 50% of the quiz");
 }
 
 function calculateScore() {
 	let yesScore = 0;
+	let all_tasks = [];
 	for (let quizIndex = 0; quizIndex < quizQuestions.length; quizIndex++) {
 		let quizValue = quizForm['quizQuestion'+quizIndex].value;
+ 		//console.log(quizQuestions[quizIndex],quizQuestions[quizIndex].answer)
  		if(quizValue === "1"){
  			yesScore++;
- 			let question_obj = quizQuestions[quizIndex];
- 			question_obj.answer = true;
+ 			quizQuestions[quizIndex].answer = true;
  		} else {
- 			let question_obj = quizQuestions[quizIndex]
- 			let task_array = [];
- 			task_array.push(question_obj.task);
- 			addTaskToNotePad(task_array);
+ 			all_tasks.push(quizQuestions[quizIndex].task);
  		}
  	}
+ 	displayScoreAndTasks(yesScore, all_tasks);
 } 
 
-function addTaskToNotePad(task_array) {
-	for (taskIndex = 0; taskIndex < task_array.length; taskIndex++) {
-		console.log(task_array[taskIndex]);
-		//display task on notepad
+function displayScoreAndTasks(yesScore, all_tasks) {
+	document.getElementById("content").innerHTML = "";
+	
+	if (yesScore > 17) {
+	//display message in Green
+	document.getElementById("content").innerHTML += 
+	`
+	<br>
+	<div class="alert alert-success" role="alert">
+	  A simple success alert—check it out!
+	</div>
+	`
+	} else if (yesScore > 10){
+	//display message in Yellow
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<div class="alert alert-warning" role="alert">
+	  A simple warning alert—check it out!
+	</div>
+	`
+	} else {
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<div class="alert alert-danger" role="alert">
+	  A simple danger alert—check it out!
+	</div>
+	`
+	}
+	
+	document.getElementById("content").innerHTML +=
+	`
+	<br>
+	<div class="input-group mb-3">
+  		<input type="text" class="form-control" placeholder="Enter new Ad Journal task" aria-label="Ad Journal task" aria-describedby="addTask">
+  	<div class="input-group-append">
+    	<button class="btn btn-outline-secondary" type="button" id="addTask">Add New Task</button>
+  	</div>
+	</div>
+	`
+	for (let taskIndex = 0; taskIndex < all_tasks.length; taskIndex++) {
+		document.getElementById("content").innerHTML += 
+		`
+		<hr/>
+		${all_tasks[taskIndex]}
+		<span class="dropdown float-right" style="margin-top: -16px;">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    options
+		  </a>
+		 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
+		</span>`;
 	}
 }
 
