@@ -42,6 +42,10 @@ let quizQuestions = [
 {questionText: question_twenty, answer: false, task: "Market to former customers to bring them back"} //last question
 ];
 
+let allCustomTasks = []; /*[{task: "write thank you note", done: false }]*/
+
+let yesScore = 0;
+
 function startQuiz() {
 	//remove the welcome message
 	// show the progress bar and increase by the percentage of question completed
@@ -72,22 +76,18 @@ function startQuiz() {
 }
 
 function calculateScore() {
-	let yesScore = 0;
-	let all_tasks = [];
 	for (let quizIndex = 0; quizIndex < quizQuestions.length; quizIndex++) {
 		let quizValue = quizForm['quizQuestion'+quizIndex].value;
  		//console.log(quizQuestions[quizIndex],quizQuestions[quizIndex].answer)
  		if(quizValue === "1"){
  			yesScore++;
  			quizQuestions[quizIndex].answer = true;
- 		} else {
- 			all_tasks.push(quizQuestions[quizIndex].task);
- 		}
+ 		} 
  	}
- 	displayScoreAndTasks(yesScore, all_tasks);
+ 	displayScoreAndTasks(yesScore);
 } 
 
-function displayScoreAndTasks(yesScore, all_tasks) {
+function displayScoreAndTasks(yesScore) {
 	document.getElementById("content").innerHTML = "";
 	
 	if (yesScore > 17) {
@@ -122,31 +122,85 @@ function displayScoreAndTasks(yesScore, all_tasks) {
 	`
 	<br>
 	<div class="input-group mb-3">
-  		<input type="text" class="form-control" placeholder="Enter new Ad Journal task" aria-label="Ad Journal task" aria-describedby="addTask">
+  		<input id="addNewTask" onchange="addNewTask()" type="text" class="form-control" placeholder="Enter new Ad Journal task" aria-label="Ad Journal task" aria-describedby="addTask">
   	<div class="input-group-append">
-    	<button class="btn btn-outline-secondary" type="button" id="addTask">Add New Task</button>
+    	<button id="addNewTask" onclick="addNewTask()" class="btn btn-outline-secondary" type="button">Add New Task</button>
   	</div>
 	</div>
 	`
-	for (let taskIndex = 0; taskIndex < all_tasks.length; taskIndex++) {
+	for (let taskIndex = 0; taskIndex < quizQuestions.length; taskIndex++) {
+		if (quizQuestions[taskIndex].answer === false) {
 		document.getElementById("content").innerHTML += 
 		`
 		<hr/>
-		${all_tasks[taskIndex]}
+		${quizQuestions[taskIndex].task}
 		<span class="dropdown float-right" style="margin-top: -16px;">
 		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="optionsMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    options
 		  </a>
 		 <div class="dropdown-menu" aria-labelledby="optionsMenuLink">
-		    <a class="dropdown-item" href="#">DONE</a>
+		    <a class="dropdown-item" href="#" onclick="taskDone(${taskIndex})">DONE</a>
+		    <div class="dropdown-divider"></div>
+		  </div>
+		</span>`;
+		}
+	}
+}
+
+function taskDone(taskIndex) {
+	quizQuestions[taskIndex].answer = true;
+	yesScore++;
+	displayScoreAndTasks(yesScore);
+	displayCustomTask();
+}
+
+function addNewTask() {
+	let newTask = document.getElementById("addNewTask").value;
+	if (newTask !== "") {
+		let task_obj = { task: newTask, done: false };
+		allCustomTasks.push(task_obj);
+		document.getElementById("addNewTask").value = "";
+	}
+	displayScoreAndTasks(yesScore);
+	displayCustomTask(); 
+}
+
+function displayCustomTask() {
+	for (let taskIndex = 0; taskIndex < allCustomTasks.length; taskIndex++) {
+		if (allCustomTasks[taskIndex].done === false) {
+		document.getElementById("content").innerHTML +=
+		`
+		<hr/>
+		${allCustomTasks[taskIndex].task}
+		<span class="dropdown float-right" style="margin-top: -16px;">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="optionsMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    options
+		  </a>
+		 <div class="dropdown-menu" aria-labelledby="optionsMenuLink">
+		    <a class="dropdown-item" href="#" onclick="customTaskDone(${taskIndex})">DONE</a>
 		    <div class="dropdown-divider"></div>
 		    <a class="dropdown-item" href="#">EDIT</a>
 		    <div class="dropdown-divider"></div>
-		    <a class="dropdown-item" href="#">DELETE</a>
+		    <a class="dropdown-item" href="#" onclick="deleteCustomTask(${taskIndex})">DELETE</a>
 		  </div>
-		</span>`;
+		</span>
+		`
+		}
 	}
 }
+
+function customTaskDone(taskIndex) {
+	allCustomTasks[taskIndex].done = true
+	displayScoreAndTasks(yesScore);
+	displayCustomTask();
+}
+
+function deleteCustomTask(taskIndex) {
+	allCustomTasks.splice(taskIndex,1)
+	displayScoreAndTasks(yesScore);
+	displayCustomTask();
+}
+
 
 //add link to edit task
 //add link (or button) to delete task
