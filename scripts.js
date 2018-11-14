@@ -43,8 +43,14 @@ let quizQuestions = [
 ];
 
 let allCustomTasks = []; /*[{task: "write thank you note", done: false }]*/
-
 let yesScore = 0;
+
+//CRUD(Create, Read, Update, Delete)
+
+//addNewTask -> createTask()
+//displayTask -> readTask()
+//editTask -> updateTask()
+//deleteTask -> deleteTask()
 
 function startQuiz() {
 	//remove the welcome message
@@ -122,7 +128,7 @@ function displayScoreAndTasks(yesScore) {
 	`
 	<br>
 	<div class="input-group mb-3">
-  		<input id="addNewTask" onchange="addNewTask()" type="text" class="form-control" placeholder="Enter new Ad Journal task" aria-label="Ad Journal task" aria-describedby="addTask">
+  		<input id="addNewTask" onchange="addNewTask()" type="text" class="form-control" placeholder="Write your new Ad Journal task here…" aria-label="Ad Journal Task" aria-describedby="addTask">
   	<div class="input-group-append">
     	<button id="addNewTask" onclick="addNewTask()" class="btn btn-outline-secondary" type="button">Add New Task</button>
   	</div>
@@ -140,8 +146,7 @@ function displayScoreAndTasks(yesScore) {
 		  </a>
 		 <div class="dropdown-menu" aria-labelledby="optionsMenuLink">
 		    <a class="dropdown-item" href="#" onclick="taskDone(${taskIndex})">DONE</a>
-		    <div class="dropdown-divider"></div>
-		  </div>
+		 </div>
 		</span>`;
 		}
 	}
@@ -179,7 +184,7 @@ function displayCustomTask() {
 		 <div class="dropdown-menu" aria-labelledby="optionsMenuLink">
 		    <a class="dropdown-item" href="#" onclick="customTaskDone(${taskIndex})">DONE</a>
 		    <div class="dropdown-divider"></div>
-		    <a class="dropdown-item" href="#">EDIT</a>
+		    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editCustomTask" onclick="editCustomTask(${taskIndex})">EDIT</a>
 		    <div class="dropdown-divider"></div>
 		    <a class="dropdown-item" href="#" onclick="deleteCustomTask(${taskIndex})">DELETE</a>
 		  </div>
@@ -195,14 +200,40 @@ function customTaskDone(taskIndex) {
 	displayCustomTask();
 }
 
+function editCustomTask(taskIndex) {
+	document.getElementById("content").innerHTML +=
+	`
+	<div class="modal fade" id="editCustomTask" tabindex="-1" role="dialog" aria-labelledby="editCustomTaskTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="editCustomTaskTitle">Edit Task #${taskIndex + 1}</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body form-group">
+	       <input type="text" class="form-control" name="editCustomTask" id="editCustomTaskInput" value="${allCustomTasks[taskIndex].task}">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateCustomTask(${taskIndex})">Save Changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	`
+}
+
+function updateCustomTask(taskIndex) {
+	let updatedTask = document.getElementById("editCustomTaskInput").value;
+	allCustomTasks[taskIndex].task = updatedTask;
+	displayScoreAndTasks(yesScore);
+	displayCustomTask();
+}
+
 function deleteCustomTask(taskIndex) {
 	allCustomTasks.splice(taskIndex,1)
 	displayScoreAndTasks(yesScore);
 	displayCustomTask();
 }
-
-
-//add link to edit task
-//add link (or button) to delete task
-//pro: add link (or button) to mark task as done
-//add a form that allow you to create new task
