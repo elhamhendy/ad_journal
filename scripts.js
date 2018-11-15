@@ -49,14 +49,11 @@ let yesScore = 0;
 
 //addNewTask -> createTask()
 //displayTask -> readTask()
-//editTask -> updateTask()
+//editTask -> updateTask() & saveTask()
 //deleteTask -> deleteTask()
 
 function startQuiz() {
-	//remove the welcome message
-	// show the progress bar and increase by the percentage of question completed
-	document.getElementById("content").innerHTML = 
-	`<div class="progress">
+	document.getElementById("content").innerHTML = `<div class="progress">
   	<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
 	 </div>`;
 	 document.getElementById("content").innerHTML += `<br><strong>YES &nbsp;&nbsp;&nbsp; NO</strong>`
@@ -70,15 +67,14 @@ function startQuiz() {
 		`
 		<br>
 		&nbsp;
-		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" class="form-check-input" required>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+		<input type="radio" name="quizQuestion${quizIndex}" value="1" aria-label="Checkbox for YES" class="form-check-input" required>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 		<input type="radio" name="quizQuestion${quizIndex}" value="0" aria-label="Checkbox for NO" class="form-check-input" required>
 		&nbsp;&nbsp;&nbsp;`
 
 		document.getElementById("quizForm").innerHTML += `${quizQuestions[quizIndex].questionText}<br>`;
 
 	}
-		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Profitability Score</button>`;
-		console.log("You've completed 50% of the quiz");
+		document.getElementById("content").innerHTML += `<br><button type="button" class="btn btn-outline-info btn-lg" onclick="calculateScore()">Get My Profitability Score</button>&nbsp;&nbsp; &nbsp;&nbsp;`;
 }
 
 function calculateScore() {
@@ -96,13 +92,13 @@ function calculateScore() {
 function displayScoreAndTasks(yesScore) {
 	document.getElementById("content").innerHTML = "";
 	
-	if (yesScore > 17) {
+	if (yesScore > 15) {
 	//display message in Green
 	document.getElementById("content").innerHTML += 
 	`
 	<br>
 	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
+	  <center>Congratulations! You've got a strong marketing strategy that'll make your website profitable.</center>
 	</div>
 	`
 	} else if (yesScore > 10){
@@ -111,7 +107,7 @@ function displayScoreAndTasks(yesScore) {
 	`
 	<br>
 	<div class="alert alert-warning" role="alert">
-	  A simple warning alert—check it out!
+	  <center>You're missing critical marketing components that'll make your webiste much more profitable.</center>
 	</div>
 	`
 	} else {
@@ -119,7 +115,7 @@ function displayScoreAndTasks(yesScore) {
 	`
 	<br>
 	<div class="alert alert-danger" role="alert">
-	  A simple danger alert—check it out!
+		<center>Your business is at risk of failing, call us right now for help.</center>
 	</div>
 	`
 	}
@@ -130,7 +126,7 @@ function displayScoreAndTasks(yesScore) {
 	<div class="input-group mb-3">
   		<input id="addNewTask" onchange="addNewTask()" type="text" class="form-control" placeholder="Write your new Ad Journal task here…" aria-label="Ad Journal Task" aria-describedby="addTask">
   	<div class="input-group-append">
-    	<button id="addNewTask" onclick="addNewTask()" class="btn btn-outline-secondary" type="button">Add New Task</button>
+    	<button id="addNewTask" onclick="addNewTask()" class="btn btn-outline-info" type="button">Add New Task</button>
   	</div>
 	</div>
 	`
